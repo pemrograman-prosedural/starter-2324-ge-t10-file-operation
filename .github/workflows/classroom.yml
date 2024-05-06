@@ -1,0 +1,346 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: t10&#45;01&#45;01
+      id: t10-45-01-45-01
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: t10&#45;01&#45;01
+        setup-command: make compile
+        command: make -s test_01
+        input: |
+          dorm-print-all-detail
+          student-print-all-detail
+          ---
+        expected-output: |
+          Antiokia|5|male|0
+          Mamre|5|male|0
+          Silo|5|male|0
+          Mahanaim|5|male|0
+          Nazaret|5|male|0
+          12S21001|Dhino Turnip|2021|male|unassigned
+          12S21002|Marudut Tampubolon|2021|male|unassigned
+          12S21003|Jusas Tampubolon|2021|male|unassigned
+          12S21004|Estomihi pangaribuan|2021|male|unassigned
+          12S21006|Weny Sitinjak|2021|female|unassigned
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: t10&#45;01&#45;02
+      id: t10-45-01-45-02
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: t10&#45;01&#45;02
+        setup-command: make compile
+        command: make -s test_01
+        input: |
+          student-add#12S21007#Dame Sitinjak#2021#female
+          student-add#12S21008#Tuani Manurung#2021#male
+          student-add#12S21009#Mikhael Pakpahan#2021#male
+          student-add#12S21010#Bobby Siagian#2021#male
+          student-add#12S21011#Aldi Simamora#2021#male
+          student-print-all
+          dorm-add#Pniel#20#female
+          dorm-add#Kapernaum#20#male
+          dorm-print-all
+          student-print-all-detail
+          dorm-print-all-detail
+          ---
+        expected-output: |
+          12S21001|Dhino Turnip|2021|male
+          12S21002|Marudut Tampubolon|2021|male
+          12S21003|Jusas Tampubolon|2021|male
+          12S21004|Estomihi pangaribuan|2021|male
+          12S21006|Weny Sitinjak|2021|female
+          12S21007|Dame Sitinjak|2021|female
+          12S21008|Tuani Manurung|2021|male
+          12S21009|Mikhael Pakpahan|2021|male
+          12S21010|Bobby Siagian|2021|male
+          12S21011|Aldi Simamora|2021|male
+          Antiokia|5|male
+          Mamre|5|male
+          Silo|5|male
+          Mahanaim|5|male
+          Nazaret|5|male
+          Pniel|20|female
+          Kapernaum|20|male
+          12S21001|Dhino Turnip|2021|male|unassigned
+          12S21002|Marudut Tampubolon|2021|male|unassigned
+          12S21003|Jusas Tampubolon|2021|male|unassigned
+          12S21004|Estomihi pangaribuan|2021|male|unassigned
+          12S21006|Weny Sitinjak|2021|female|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          Antiokia|5|male|0
+          Mamre|5|male|0
+          Silo|5|male|0
+          Mahanaim|5|male|0
+          Nazaret|5|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: t10&#45;02&#45;01
+      id: t10-45-02-45-01
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: t10&#45;02&#45;01
+        setup-command: make compile
+        command: make -s test_02
+        input: |
+          student-add#12S21007#Dame Sitinjak#2021#female
+          student-add#12S21008#Tuani Manurung#2021#male
+          student-print-all
+          dorm-add#Pniel#20#female
+          dorm-add#Kapernaum#20#male
+          dorm-print-all
+          student-print-all-detail
+          dorm-print-all-detail
+          student-add#12S21009#Mikhael Pakpahan#2021#male
+          student-add#12S21010#Bobby Siagian#2021#male
+          student-add#12S21011#Aldi Simamora#2021#male
+          ---
+        expected-output: |
+          12S21001|Dhino Turnip|2021|male
+          12S21002|Marudut Tampubolon|2021|male
+          12S21003|Jusas Tampubolon|2021|male
+          12S21004|Estomihi pangaribuan|2021|male
+          12S21006|Weny Sitinjak|2021|female
+          12S21007|Dame Sitinjak|2021|female
+          12S21008|Tuani Manurung|2021|male
+          12S21009|Mikhael Pakpahan|2021|male
+          12S21010|Bobby Siagian|2021|male
+          12S21011|Aldi Simamora|2021|male
+          12S21007|Dame Sitinjak|2021|female
+          12S21008|Tuani Manurung|2021|male
+          Antiokia|5|male
+          Mamre|5|male
+          Silo|5|male
+          Mahanaim|5|male
+          Nazaret|5|male
+          Pniel|20|female
+          Kapernaum|20|male
+          Pniel|20|female
+          Kapernaum|20|male
+          12S21001|Dhino Turnip|2021|male|unassigned
+          12S21002|Marudut Tampubolon|2021|male|unassigned
+          12S21003|Jusas Tampubolon|2021|male|unassigned
+          12S21004|Estomihi pangaribuan|2021|male|unassigned
+          12S21006|Weny Sitinjak|2021|female|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          Antiokia|5|male|0
+          Mamre|5|male|0
+          Silo|5|male|0
+          Mahanaim|5|male|0
+          Nazaret|5|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: t10&#45;02&#45;02
+      id: t10-45-02-45-02
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: t10&#45;02&#45;02
+        setup-command: make compile
+        command: make -s test_02
+        input: |
+          student-add#12S21008#Tuani Manurung#2021#male
+          student-add#12S21007#Dame Sitinjak#2021#female
+          student-print-all
+          dorm-add#Pniel#20#female
+          dorm-add#Kapernaum#20#male
+          dorm-print-all
+          student-add#12S21009#Mikhael Pakpahan#2021#male
+          student-add#12S21010#Bobby Siagian#2021#male
+          student-add#12S21011#Aldi Simamora#2021#male
+          assign-student#12S21001#Antiokia
+          assign-student#12S21002#Antiokia
+          assign-student#12S21003#Antiokia
+          assign-student#12S21004#Antiokia
+          assign-student#12S21006#Pniel
+          assign-student#12S21007#Pniel
+          assign-student#12S21008#Antiokia
+          assign-student#12S21009#Antiokia
+          assign-student#12S21010#Antiokia
+          assign-student#12S21011#Antiokia
+          move-student#12S21001#Mahanaim
+          move-student#12S21007#Nazaret
+          move-student#12S21007#Kapernaum
+          student-print-all-detail
+          dorm-print-all-detail
+          ---
+        expected-output: |
+          12S21001|Dhino Turnip|2021|male
+          12S21002|Marudut Tampubolon|2021|male
+          12S21003|Jusas Tampubolon|2021|male
+          12S21004|Estomihi pangaribuan|2021|male
+          12S21006|Weny Sitinjak|2021|female
+          12S21007|Dame Sitinjak|2021|female
+          12S21008|Tuani Manurung|2021|male
+          12S21009|Mikhael Pakpahan|2021|male
+          12S21010|Bobby Siagian|2021|male
+          12S21011|Aldi Simamora|2021|male
+          12S21007|Dame Sitinjak|2021|female
+          12S21008|Tuani Manurung|2021|male
+          12S21009|Mikhael Pakpahan|2021|male
+          12S21010|Bobby Siagian|2021|male
+          12S21011|Aldi Simamora|2021|male
+          12S21008|Tuani Manurung|2021|male
+          12S21007|Dame Sitinjak|2021|female
+          Antiokia|5|male
+          Mamre|5|male
+          Silo|5|male
+          Mahanaim|5|male
+          Nazaret|5|male
+          Pniel|20|female
+          Kapernaum|20|male
+          Pniel|20|female
+          Kapernaum|20|male
+          Pniel|20|female
+          Kapernaum|20|male
+          12S21001|Dhino Turnip|2021|male|Mahanaim
+          12S21002|Marudut Tampubolon|2021|male|Antiokia
+          12S21003|Jusas Tampubolon|2021|male|Antiokia
+          12S21004|Estomihi pangaribuan|2021|male|Antiokia
+          12S21006|Weny Sitinjak|2021|female|Pniel
+          12S21007|Dame Sitinjak|2021|female|Pniel
+          12S21008|Tuani Manurung|2021|male|Antiokia
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          Antiokia|5|male|4
+          Mamre|5|male|0
+          Silo|5|male|0
+          Mahanaim|5|male|1
+          Nazaret|5|male|0
+          Pniel|20|female|2
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: t10&#45;02&#45;03
+      id: t10-45-02-45-03
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: t10&#45;02&#45;03
+        setup-command: make compile
+        command: make -s test_02
+        input: |
+          student-add#12S21008#Tuani Manurung#2021#male
+          student-add#12S21009#Mikhael Pakpahan#2021#male
+          student-add#12S21010#Bobby Siagian#2021#male
+          student-add#12S21011#Aldi Simamora#2021#male
+          dorm-add#Kapernaum#20#male
+          dorm-add#Pniel#20#female
+          student-add#12S21007#Dame Sitinjak#2021#female
+          assign-student#12S21001#Antiokia
+          assign-student#12S21002#Antiokia
+          assign-student#12S21003#Antiokia
+          assign-student#12S21004#Antiokia
+          assign-student#12S21006#Pniel
+          assign-student#12S21007#Pniel
+          assign-student#12S21008#Antiokia
+          assign-student#12S21009#Antiokia
+          assign-student#12S21010#Antiokia
+          assign-student#12S21011#Antiokia
+          move-student#12S21009#Nazaret
+          move-student#12S21010#Nazaret
+          move-student#12S21011#Nazaret
+          move-student#12S21001#Mahanaim
+          move-student#12S21007#Nazaret
+          move-student#12S21007#Kapernaum
+          student-print-all-detail
+          dorm-print-all-detail
+          ---
+        expected-output: |
+          12S21001|Dhino Turnip|2021|male|Mahanaim
+          12S21002|Marudut Tampubolon|2021|male|Antiokia
+          12S21003|Jusas Tampubolon|2021|male|Antiokia
+          12S21004|Estomihi pangaribuan|2021|male|Antiokia
+          12S21006|Weny Sitinjak|2021|female|Pniel
+          12S21007|Dame Sitinjak|2021|female|Pniel
+          12S21008|Tuani Manurung|2021|male|Antiokia
+          12S21009|Mikhael Pakpahan|2021|male|Nazaret
+          12S21010|Bobby Siagian|2021|male|Nazaret
+          12S21011|Aldi Simamora|2021|male|Nazaret
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21008|Tuani Manurung|2021|male|unassigned
+          12S21009|Mikhael Pakpahan|2021|male|unassigned
+          12S21010|Bobby Siagian|2021|male|unassigned
+          12S21011|Aldi Simamora|2021|male|unassigned
+          12S21007|Dame Sitinjak|2021|female|unassigned
+          Antiokia|5|male|4
+          Mamre|5|male|0
+          Silo|5|male|0
+          Mahanaim|5|male|1
+          Nazaret|5|male|3
+          Pniel|20|female|2
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+          Kapernaum|20|male|0
+          Kapernaum|20|male|0
+          Pniel|20|female|0
+        comparison-method: exact
+        timeout: 1
+        max-score: 20
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        T10-45-01-45-01_RESULTS: "${{steps.t10-45-01-45-01.outputs.result}}"
+        T10-45-01-45-02_RESULTS: "${{steps.t10-45-01-45-02.outputs.result}}"
+        T10-45-02-45-01_RESULTS: "${{steps.t10-45-02-45-01.outputs.result}}"
+        T10-45-02-45-02_RESULTS: "${{steps.t10-45-02-45-02.outputs.result}}"
+        T10-45-02-45-03_RESULTS: "${{steps.t10-45-02-45-03.outputs.result}}"
+      with:
+        runners: t10-45-01-45-01,t10-45-01-45-02,t10-45-02-45-01,t10-45-02-45-02,t10-45-02-45-03
